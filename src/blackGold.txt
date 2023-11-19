@@ -1,0 +1,11 @@
+Blue Gold 500
+Gold Red 300
+Magenta Yellow 438
+Blue Yellow 531
+Magenta Blue 865
+Red Purple 765
+Blue Purple 387
+Brown Magenta 1100
+Brown Blue 435
+Gold Silver 654
+Gold Purple 186
