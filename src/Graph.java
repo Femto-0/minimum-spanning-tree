@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 /*
 creating an adjacency matrix
@@ -97,7 +98,7 @@ public class Graph {
         return edgeList;
     }
 
-    public ArrayList<EdgeList> kruskalsAlgo(ArrayList<EdgeList> edgeList, int vertices){
+    public List<EdgeList> kruskalsAlgo(ArrayList<EdgeList> edgeList, int vertices){
         ArrayList<EdgeList> minimumSpanningTree= new ArrayList<>();
         edgeList.sort(Comparator.comparingInt(EdgeList::getWeight));
       DisjointSet ds= new DisjointSet();
@@ -115,17 +116,28 @@ public class Graph {
       return minimumSpanningTree;
     }
 
+
+
     public static void main(String[] args) throws IOException {
 
         int vertices=8;
         Graph graph = new Graph(vertices);
-        ArrayList<EdgeList> edgeList=graph.formAnEdgeList(graph.readFile("src/blackGold.txt"));
+        int[][]adjacencyMatrix= graph.readFile("src/blackGold.txt");
 
-        ArrayList<EdgeList> minimumSpanningTree= graph.kruskalsAlgo(edgeList,vertices);
+        ArrayList<EdgeList> edgeList=graph.formAnEdgeList(adjacencyMatrix);//reading the given file and making an edge list
 
-        for(EdgeList edge: minimumSpanningTree){
+        List<EdgeList> minimumSpanningTree= graph.kruskalsAlgo(edgeList,vertices);  //creating a minimum spanning tree
+
+        for(EdgeList edge: minimumSpanningTree){ //printing out the minimum spanning tree
             System.out.println(graph.getArrList().get(edge.getSource())+"---"+ graph.getArrList().get(edge.getDestination())+"--"+edge.getWeight());
         }
+
+        MSTPathFinder pathFinder = new MSTPathFinder();
+
+        // Example: Find the path between vertices 0 and 2
+        List<Integer> path = pathFinder.findPathInMST(minimumSpanningTree, 0, 2);
+
+        System.out.println("Path in MST: " + path);
 
 //
 //       for(EdgeList element:  edgeList){
