@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -135,9 +136,14 @@ public class Graph {
         MSTPathFinder pathFinder = new MSTPathFinder();
 
         // Example: Find the path between vertices 0 and 2
-        List<Integer> path = pathFinder.findPathInMST(minimumSpanningTree, 0, 2);
+        List<Integer> path = pathFinder.findPathInMST(minimumSpanningTree, 0, 9);
+        String[]array=new String[path.size()];
+for(int i=0; i<path.size()-1; i++){
+    array[i]=graph.getArrList().get(path.get(i));
+}
 
-        System.out.println("Path in MST: " + path);
+
+        System.out.println("Path in MST: " + Arrays.toString(array));
 
 //
 //       for(EdgeList element:  edgeList){
